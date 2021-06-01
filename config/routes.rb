@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
   
+  # Customized Routes
   get("/", {:controller => "users", :action => "index"})
   
   get("/users", {:controller => "users", :action => "index"})
 
   get("/users/:path_id", {:controller => "users", :action => "show"})
+
+  get("/users/:path_id/liked_photos", {:controller => "photos", :action => "liked_photos"})
   
   # Routes for the Comment resource:
 

@@ -67,4 +67,12 @@ class PhotosController < ApplicationController
 
     redirect_to("/photos", { :notice => "Photo deleted successfully."} )
   end
+
+  def liked_photos
+    user = params.fetch("path_id")
+    @the_user = User.where(:username => user).at(0)
+    render({:tempalte => "/photos/liked_photos.html.erb"})
+  end
+
+
 end
