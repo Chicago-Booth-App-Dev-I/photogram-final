@@ -1,0 +1,29 @@
+<h1> List of users </h1>
+
+<table border = "1">
+<tr>
+  <th>
+    Username
+  </th>
+  
+  <th>
+    Private?
+  </th>
+  
+  <th>
+  Follow?
+  </th>
+  
+  <th>
+  User Profile
+  </th>
+</tr>
+
+<% @list_of_users.each do |a_user| %>
+  <tr>
+    <td> <%= a_user.username %> </td>
+    <td> <%= a_user.private %> </td>
+  </tr>
+<% end %>
+  
+</table>
