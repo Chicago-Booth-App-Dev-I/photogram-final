@@ -42,5 +42,16 @@ class User < ApplicationRecord
 
   has_many(:activity, { :through => :recipients, :source => :liked_photos })
 
+  def followers
+    user_id = self.id
+    list_of_followers = FollowRequest.where(:recipient_id => user_id).where(:status => "accepted")
+    number_of_followers = list_of_followers.count
+  end
+
+  def following
+    user_id = self.id
+    following_list = FollowRequest.where(:sender_id => user_id).where(:status => "accepted")
+    following_number = following_list.count
+  end
 
 end
