@@ -44,14 +44,30 @@ class User < ApplicationRecord
 
   def followers
     user_id = self.id
-    list_of_followers = FollowRequest.where(:recipient_id => user_id).where(:status => "accepted")
-    number_of_followers = list_of_followers.count
+    list_of_followers = FollowRequest.where(:recipient_id => user_id).where(:status => "accepted").order(:recipient_id => :asc)
+    
+    followers_ids = Array.new
+
+    list_of_followers.each do |a_follower|
+    followers_ids.push(a_follower.sender_id)
+    end
+
+    return followers_ids
+
   end
 
   def following
     user_id = self.id
-    following_list = FollowRequest.where(:sender_id => user_id).where(:status => "accepted")
-    following_number = following_list.count
+    following_list = FollowRequest.where(:sender_id => user_id).where(:status => "accepted").order(:recipient_id => :asc)
+    
+    following_ids = Array.new
+
+    following_list.each do |a_following|
+    following_ids.push(a_following.recipient_id)
+    end
+
+    return following_ids  
+  
   end
 
 end
