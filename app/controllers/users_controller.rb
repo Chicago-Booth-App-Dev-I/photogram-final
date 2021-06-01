@@ -7,7 +7,9 @@ def index
 end 
 
 def show
-render({:template => "/users/show.html.erb"})
+  user = params.fetch("path_id")
+  @the_user = User.where(:username => user) .at(0)
+  render({:template => "/users/show.html.erb"})
 end
 
 end
