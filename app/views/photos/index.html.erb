@@ -1,7 +1,7 @@
 <div>
   <div>
     <h1>
-      List of all photos
+      List of photos
     </h1>
   </div>
 </div>
@@ -81,10 +81,10 @@
 <hr>
 <div>
   <div>
-    <table>
+    <table border = "1">
       <tr>
         <th>
-          ID
+          Image
         </th>
 
         <th>
@@ -92,45 +92,26 @@
         </th>
 
         <th>
-          Image
-        </th>
-
-        <th>
           Owner
         </th>
 
         <th>
-          Comments count
+          Posted count
         </th>
 
         <th>
-          Likes count
+          Likes
         </th>
 
         <th>
-          Likes count
-        </th>
-
-        <th>
-          Comments count
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-
-        <th>
+        Photo Details
         </th>
       </tr>
 
       <% @list_of_photos.each do |a_photo| %>
       <tr>
         <td>
-          <%= a_photo.id %>
+          <img src = "<%= a_photo.image %>" >
         </td>
 
         <td>
@@ -138,34 +119,15 @@
         </td>
 
         <td>
-          <%= a_photo.image %>
+          <%= a_photo.owner.username %>
         </td>
 
         <td>
-          <%= a_photo.owner_id %>
-        </td>
-
-        <td>
-          <%= a_photo.comments_count %>
+          <%= time_ago_in_words(a_photo.created_at) %>
         </td>
 
         <td>
           <%= a_photo.likes_count %>
-        </td>
-
-        <td>
-          <%= a_photo.likes_count %>
-        </td>
-
-        <td>
-          <%= a_photo.comments_count %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(a_photo.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_photo.updated_at) %> ago
         </td>
 
         <td>
