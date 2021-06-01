@@ -77,5 +77,4 @@ end
 
 gem "carrierwave"
 gem "cloudinary"
-
 gem 'humanize_boolean'
