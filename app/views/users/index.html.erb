@@ -23,7 +23,16 @@
   <tr>
     <td> <%= a_user.username %> </td>
     <td> <%= a_user.private.humanize %> </td>
-    <td> <h3> Follow </h3> </td>
+    <% if @current_user != nil %>
+      <td> 
+        <form action ="/insert_follow_request/<%=a_user.id%>">
+        <label for = "new_follow_request"> </label>
+        <input id = "new_follow_request" type="hidden">
+        <button> Follow </button> 
+      </td>
+      <% else %>
+      <td> </td>
+    <% end %>
     <td> <a href = "/users/<%=a_user.username%>"> Show details </a> </td>
   </tr>
 <% end %>

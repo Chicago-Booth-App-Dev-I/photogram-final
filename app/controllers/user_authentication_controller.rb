@@ -67,9 +67,6 @@ class UserAuthenticationController < ApplicationController
     @user.comments_count = params.fetch("query_comments_count")
     @user.password = params.fetch("query_password")
     @user.password_confirmation = params.fetch("query_password_confirmation")
-    @user.sent_follow_requests_count = params.fetch("query_sent_follow_requests_count")
-    @user.received_follow_requests_count = params.fetch("query_received_follow_requests_count")
-    @user.own_photos_count = params.fetch("query_own_photos_count")
     @user.private = params.fetch("query_private", false)
     
     if @user.valid?
