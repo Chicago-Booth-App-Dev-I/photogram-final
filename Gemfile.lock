@@ -163,6 +163,8 @@ GEM
     http-accept (1.7.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
+    humanize_boolean (0.0.2)
+      i18n
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.1)
@@ -459,6 +461,7 @@ DEPENDENCIES
   execjs
   factory_bot_rails
   grade_runner!
+  humanize_boolean
   jbuilder (~> 2.7)
   letter_opener
   listen (~> 3.2)
