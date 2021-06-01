@@ -1,0 +1,50 @@
+<h1> <%= @the_user.username %> </h1>
+
+<dl>
+  <dt> Private </dt>
+  <dd> <%= @the_user.private %> </dd>
+  
+  <dt> Followers </dt>
+  <dd> <%= @the_user.followers.count %> </dd>
+
+  <dt> Following </dt>
+  <dd> <%= @the_user.following.count %> </dd>
+
+</dl>
+
+<ul>
+  <li> <a href = "/users/<%= @the_user.username %>"> Profile </a> </li>
+  <li> <a href = "/users/<%= @the_user.username %>/liked_photos"> Liked photos </a> </li>
+  <li> <a href = "/users/<%= @the_user.username %>/feed"> Feed </a> </li>
+  <li> <a href = "/users/<%= @the_user.username %>/discover"> Discover </a> </li>
+</ul>
+
+<h2> Discover </h2>
+
+<table border = "1" >
+
+  <tr>
+    <th> Image </th>
+    <th> Owner </th>
+    <th> Caption </th>
+    <th> Posted </th>
+    <th> Likes </th>
+    <th> Image Details </th>
+  </tr>
+
+  <% counter = [] %>
+  <% @the_user.following.each do |a_following| %>
+    <% user = User.where(:id => a_following).at(0) %>
+    <tr>
+      <% user.liked_photos.each do |a_photo| %>
+      <% counter.push(1) %>
+      <td> <img src = "<%=a_photo.image %>" </td>
+      <td> <%=a_photo.owner.username %> </td>
+      <td> <%=a_photo.caption %> </td>
+      <td> <%=time_ago_in_words(a_photo.created_at) %> </td>
+      <td> <%=a_photo.likes.count %> </td>
+      <td> <a href = "/photos/<%=a_photo.id%>"> Show details </a> </td> 
+    </tr>
+    <% end %>  
+<% end %>
+</table>

@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   
   get("/users/:path_id/feed", {:controller => "users", :action => "feed"})
 
+  get("/users/:path_id/discover", {:controller => "users", :action => "discover"})
+
   # Routes for the Comment resource:
 
   # CREATE

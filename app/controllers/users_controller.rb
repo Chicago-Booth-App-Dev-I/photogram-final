@@ -21,4 +21,13 @@ def feed
   render({:template => "/users/feed.html.erb"})
 end
 
+def discover
+  user = params.fetch("path_id")
+  @the_user = User.where(:username => user).at(0)
+
+  user_followers = @the_user.followers
+
+  render({:template => "/users/discover.html.erb"})
+end
+
 end
