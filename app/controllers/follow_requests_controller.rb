@@ -18,6 +18,10 @@ class FollowRequestsController < ApplicationController
   end
 
   def create
+    user_followers = @current_user.followers
+    recipient = User.where(:id => params.fetch("path_id")).at(0)
+    recipient_followers = recipient.followers
+    
     the_follow_request = FollowRequest.new
     the_follow_request.sender_id = params.fetch("query_sender_id")
     the_follow_request.recipient_id = params.fetch("query_recipient_id")
