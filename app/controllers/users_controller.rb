@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-skip_before_action(:force_user_sign_in, { :only => [:index] })
+#skip_before_action(:force_user_sign_in, { :only => [:index] })
 
 def index
   @list_of_users = User.all.order(:username)
@@ -28,6 +28,10 @@ def discover
   user_followers = @the_user.followers
 
   render({:template => "/users/discover.html.erb"})
+end
+
+def not_permitted
+redirect_to("/users", { :alert => "You are not authorized for that." })
 end
 
 end

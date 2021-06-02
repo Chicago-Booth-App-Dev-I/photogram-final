@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   get("/users/:path_id/discover", {:controller => "users", :action => "discover"})
 
+  get("/users/not_permitted", {:controller => "users", :action => "not_permitted"})
+
   # Routes for the Comment resource:
 
   # CREATE
