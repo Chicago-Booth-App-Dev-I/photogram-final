@@ -6,7 +6,13 @@
   
   <dt> Followers </dt>
   <dd> <%= @the_user.followers.count %> </dd>
-  <dd> create follow button here </dd>
+  <dd> 
+    <form action = "/insert_follow_request/<%= @the_user.id %>">
+      <label for = "new_follow_request"> </label>
+      <input id = "new_follow_request" type="hidden">
+      <button> Follow </button> 
+      </form>
+  </dd>
 
   <dt> Following </dt>
   <dd> <%= @the_user.following.count %> </dd>
