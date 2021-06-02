@@ -22,7 +22,7 @@ class FollowRequestsController < ApplicationController
     recipient = User.where(:id => params.fetch("path_id")).at(0)
     recipient_followers = recipient.followers
     
-    if recipient.private
+    if recipient.private == true
     the_follow_request = FollowRequest.new
     the_follow_request.sender_id = @current_user.id
     the_follow_request.recipient_id = recipient.id
@@ -37,7 +37,7 @@ class FollowRequestsController < ApplicationController
     the_follow_request = FollowRequest.new
     the_follow_request.sender_id = @current_user.id
     the_follow_request.recipient_id = recipient.id
-    the_follow_request.status = "approved"
+    the_follow_request.status = "accepted"
       if the_follow_request.valid?
         the_follow_request.save
         redirect_to("/users/#{recipient.username}", { :notice => "You are now following #{recipient.username}." })
