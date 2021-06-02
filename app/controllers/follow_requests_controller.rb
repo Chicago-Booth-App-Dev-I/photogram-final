@@ -22,17 +22,29 @@ class FollowRequestsController < ApplicationController
     recipient = User.where(:id => params.fetch("path_id")).at(0)
     recipient_followers = recipient.followers
     
+    if recipient.private
     the_follow_request = FollowRequest.new
-    the_follow_request.sender_id = params.fetch("query_sender_id")
-    the_follow_request.recipient_id = params.fetch("query_recipient_id")
-    the_follow_request.status = params.fetch("query_status")
-
-    if the_follow_request.valid?
-      the_follow_request.save
-      redirect_to("/follow_requests", { :notice => "Follow request created successfully." })
+    the_follow_request.sender_id = @current_user.id
+    the_follow_request.recipient_id = recipient.id
+    the_follow_request.status = "pending"
+      if the_follow_request.valid?
+        the_follow_request.save
+        redirect_to("/", { :notice => "Follow request sent." })
+      else
+        redirect_to("/", { :alert => "Error. Failed to creat follow request." })
+      end
     else
-      redirect_to("/follow_requests", { :notice => "Follow request failed to create successfully." })
-    end
+    the_follow_request = FollowRequest.new
+    the_follow_request.sender_id = @current_user.id
+    the_follow_request.recipient_id = recipient.id
+    the_follow_request.status = "approved"
+      if the_follow_request.valid?
+        the_follow_request.save
+        redirect_to("/users/#{recipient.username}", { :notice => "You are now following #{recipient.username}." })
+      else
+        redirect_to("/", { :alert => "Follow request failed to create successfully." })
+      end    
+    end 
   end
 
   def update

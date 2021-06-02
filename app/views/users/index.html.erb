@@ -25,10 +25,11 @@
     <td> <%= a_user.private.humanize %> </td>
     <% if @current_user != nil %>
       <td> 
-        <form action ="/insert_follow_request/<%=a_user.id%>">
+        <form action = "/insert_follow_request/<%= a_user.id %>">
         <label for = "new_follow_request"> </label>
         <input id = "new_follow_request" type="hidden">
         <button> Follow </button> 
+        </form>
       </td>
       <% else %>
       <td> </td>
