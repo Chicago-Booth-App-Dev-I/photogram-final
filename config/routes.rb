@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   get("/users/:path_id/discover", {:controller => "users", :action => "discover"})
 
-  get("/users/not_permitted", {:controller => "users", :action => "not_permitted"})
+  get("/users/not_permitted/:path_id", {:controller => "users", :action => "not_permitted"})
 
   # Routes for the Comment resource:
 
@@ -46,8 +46,9 @@ Rails.application.routes.draw do
   
   # UPDATE
   
-  post("/modify_follow_request/:path_id", { :controller => "follow_requests", :action => "update" })
-  
+  get("/accept_follow_request/:path_id", { :controller => "follow_requests", :action => "accept_follow" })
+  get("/reject_follow_request/:path_id", { :controller => "follow_requests", :action => "reject_follow" })
+
   # DELETE
   get("/delete_follow_request/:path_id", { :controller => "follow_requests", :action => "destroy" })
 

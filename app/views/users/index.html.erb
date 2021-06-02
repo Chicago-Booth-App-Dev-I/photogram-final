@@ -44,8 +44,8 @@
       </td>
     <% end %>
 
-    <% if a_user.private == true && @current_user.following.exclude?(a_user.id) %>
-    <td> <a href = "/users/not_permitted"> Show details </a> </td>
+    <% if a_user.private == true && @current_user.following.exclude?(a_user.id) && @current_user.id != a_user.id%>
+    <td> <a href = "/users/not_permitted/<%=a_user.id%>"> Show details </a> </td>
     <% else %>
     <td> 
       <a href = "/users/<%= a_user.username %>"> Show details </a> 

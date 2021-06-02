@@ -26,16 +26,16 @@
   <% if @current_user.id == @the_user.id %>  
   <dt> Pending follow requests </dt>
     <dd>
-    <% @current_user.request_pending.each do |pending| %>
+    <% @the_user.pending_request.each do |pending| %>
       <ul>
       <li> <%= User.where(:id => pending).at(0).username %> </li>
       </ul>
-      <form action ="/modify_follow_request/accept">
+      <form action ="/accept_follow_request/<%= pending %>">
       <label for ="follow_decision"> </label>
       <input id = "follow_decision" type = "hidden" name = "follow_request_decision">
       <button> Accept </button>
       
-      <form action ="/modify_follow_request/reject">
+      <form action ="/reject_follow_request/<%= pending %>">
       <label for ="follow_decision"> </label>
       <input id = "follow_decision" type = "hidden" name = "follow_request_decision">
       <button> Reject </button>

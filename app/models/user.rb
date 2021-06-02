@@ -82,4 +82,17 @@ class User < ApplicationRecord
     return pending_ids 
   end
 
+def pending_request
+    user_id = self.id
+    pending_requests = FollowRequest.where(:recipient_id => user_id).where(:status => "pending")
+
+    pending_request_ids = Array.new
+
+    pending_requests.each do |pending|
+    pending_request_ids.push(pending.recipient_id)
+    end
+
+    return pending_request_ids 
+end
+
 end

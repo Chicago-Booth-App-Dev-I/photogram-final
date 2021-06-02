@@ -31,7 +31,9 @@ def discover
 end
 
 def not_permitted
-redirect_to("/users", { :alert => "You are not authorized for that." })
+  user = params.fetch("path_id")
+  @the_user = User.where(:username => user).at(0)
+  redirect_to("/", { :alert => "You are not authorized for that." })
 end
 
 end
