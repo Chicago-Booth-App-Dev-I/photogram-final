@@ -89,7 +89,7 @@ def pending_request
     pending_request_ids = Array.new
 
     pending_requests.each do |pending|
-    pending_request_ids.push(pending.recipient_id)
+    pending_request_ids.push(pending.sender_id)
     end
 
     return pending_request_ids 
