@@ -63,6 +63,19 @@ class FollowRequestsController < ApplicationController
     end
   end
 
+  def reject_follow
+    the_id = params.fetch("path_id")
+    the_follow_request = FollowRequest.where({:sender_id => the_id }).where({:recipient_id => @current_user.id}).at(0)
+
+    the_follow_request.sender_id = the_id
+    the_follow_request.recipient_id = @current_user.id
+    the_follow_request.status = "rejected"
+    the_follow_request.save
+    
+    redirect_to("/users/#{@current_user.username}", { :notice => "Rejected follow request."} )
+
+  end
+
   def destroy
     the_id = params.fetch("path_id")
     the_follow_request = FollowRequest.where({ :recipient_id => the_id }).where({:sender_id => @current_user.id }).at(0)

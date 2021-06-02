@@ -28,17 +28,20 @@
     <dd>
     <% @the_user.pending_request.each do |pending| %>
       <ul>
-      <li> <%= User.where(:id => pending).at(0).username %> </li>
+        <li> <%= User.where(:id => pending).at(0).username %> </li>
       </ul>
+      
       <form action ="/accept_follow_request/<%= pending %>">
       <label for ="follow_decision"> </label>
       <input id = "follow_decision" type = "hidden" name = "follow_request_decision">
       <button> Accept </button>
+      </form>
       
       <form action ="/reject_follow_request/<%= pending %>">
-      <label for ="follow_decision"> </label>
-      <input id = "follow_decision" type = "hidden" name = "follow_request_decision">
+      <label for ="follow_decision_reject"> </label>
+      <input id = "follow_decision_reject" type = "hidden" name = "follow_request_decision">
       <button> Reject </button>
+      </form>
 
     <% end %>
     </dd>
