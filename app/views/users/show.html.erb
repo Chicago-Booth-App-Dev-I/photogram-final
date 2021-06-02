@@ -6,20 +6,33 @@
   
   <dt> Followers </dt>
   <dd> <%= @the_user.followers.count %> </dd>
-  <dd> 
-    <% if @current_user.following.exclude?(@the_user.id) %>
+    <% if @current_user.following.exclude?(@the_user.id) && @current_user.id != @the_user.id %>
+    <dd>
     <form action = "/insert_follow_request/<%= @the_user.id %>" >
       <label for = "new_follow_request"> </label>
       <input id = "new_follow_request" type="hidden">
       <button> Follow </button> 
       </form>
+    </dd>
+    <% elsif @current_user.id == @the_user.id %>
+    <dd>
+    </dd>
     <% else %>
+    <dd>
     <a href = "/delete_follow_request/<%= @the_user.id %>"> Unfollow </a>
+    </dd>
     <% end %>
-  </dd>
-
+  
+  <dt> Pending follow requests </dt>
+    <dd> 
+    </dd>
+    
   <dt> Following </dt>
   <dd> <%= @the_user.following.count %> </dd>
+
+  <dt> Edit user </dt>
+  <dd>
+  </dd>
 
 </dl>
 
