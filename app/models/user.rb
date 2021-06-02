@@ -66,8 +66,20 @@ class User < ApplicationRecord
     following_ids.push(a_following.recipient_id)
     end
 
-    return following_ids  
+    return following_ids 
+  end 
   
+  def request_pending
+    user_id = self.id
+    pending_requests = FollowRequest.where(:sender_id => user_id).where(:status => "pending")
+
+    pending_ids = Array.new
+
+    pending_requests.each do |pending|
+    pending_ids.push(pending.recipient_id)
+    end
+
+    return pending_ids 
   end
 
 end

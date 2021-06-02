@@ -23,22 +23,25 @@
   <tr>
     <td> <%= a_user.username %> </td>
     <td> <%= a_user.private.humanize %> </td>
-    <% if @current_user != nil %>
+    <% if @current_user != nil && @current_user.following.include?(a_user.id) %>
+      <td> 
+        <a href = "/delete_follow_request/<%= a_user.id %>"> Unfollow </a>
+      </td>
+      <% elsif @current_user != nil && @current_user.request_pending.include?(a_user.id)  %>
+      <td> 
+        Request sent. <a href = "/delete_follow_request/<%= a_user.id %>"> Cancel. </a> 
+      </td>
+      <% elsif @current_user != nil && @current_user.following.exclude?(a_user.id)%>
       <td> 
         <form action = "/insert_follow_request/<%= a_user.id %>">
         <label for = "new_follow_request"> </label>
         <input id = "new_follow_request" type="hidden">
         <button> Follow </button> 
         </form>
-      </td>
-      
-      
-      
-      
-      
-      
+      </td>  
       <% else %>
-      <td> </td>
+      <td> 
+      </td>
     <% end %>
     <td> <a href = "/users/<%=a_user.username%>"> Show details </a> </td>
   </tr>
