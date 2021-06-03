@@ -40,16 +40,11 @@ class PhotosController < ApplicationController
   end
 
   def update
-    the_id = params.fetch("path_id")
-    the_photo = Photo.where({ :id => the_id }).at(0)
+    the_photo_id = params.fetch("path_id")
+    the_photo = Photo.where({ :id => the_photo_id }).at(0)
 
-    the_photo.caption = params.fetch("query_caption")
-    the_photo.image = params.fetch("query_image")
-    the_photo.owner_id = params.fetch("query_owner_id")
-    the_photo.comments_count = params.fetch("query_comments_count")
-    the_photo.likes_count = params.fetch("query_likes_count")
-    the_photo.likes_count = params.fetch("query_likes_count")
-    the_photo.comments_count = params.fetch("query_comments_count")
+    the_photo.caption = params.fetch("query_body")
+    the_photo.owner_id = @current_user.id
 
     if the_photo.valid?
       the_photo.save

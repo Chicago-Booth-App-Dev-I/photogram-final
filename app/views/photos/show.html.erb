@@ -73,12 +73,22 @@
           <% end %>
       </dd>
 
+      <%if @current_user.id == @the_photo.owner.id %>
       <dd>
         <dt> Edit photo </dt>
+        <dd>
+        <form action = "/modify_photo/<%=@the_photo.id%>">
+        <label for = "photo_id"> </label>
+        <input id ="photo_id" type="hidden" value ="<%=@the_photo.id%>">
+
+        <label for ="new_caption"> Caption </label>
+        <input id ="new_caption" type="text" name="query_body" placeholder="<%=@the_photo.caption%>">
+        <button> Update photo </button>  
+        </form>
+        </dd>
       </dd>
-          
-      <%if @current_user.id == @the_photo.owner.id %>
-        <dt> Delete photo <dt>
+      
+      <dt> Delete photo <dt>
         <dd> <a href ="/delete_photo/<%= @the_photo.id %>"> Delete this photo </a> </dd>
       <% end %>
 
@@ -115,7 +125,7 @@
 
 <form action = "/insert_comment/<%= @the_photo.id %>">
   <label for = "comment_author">  </label>
-  <input id = "comment_author" type = "hidden" placeholder = "Enter a comment.." name = "query_author" value="@current_user.id">
+  <input id = "comment_author" type = "hidden" placeholder = "Enter a comment.." name = "query_author" value="<%=@current_user.id%>">
 
   <label for = "new_comment"> Comment </label>
   <input id = "new_comment" type = "text" placeholder = "Enter a comment.." name = "query_body">
