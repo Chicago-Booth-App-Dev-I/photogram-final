@@ -2,11 +2,11 @@ class PhotosController < ApplicationController
   skip_before_action(:force_user_sign_in, { :only => [:index] })
   
   def index
-    @list_of_private_users = User.where(:private => false)
+    @list_of_public_users = User.where(:private => false)
     
-    matching_photos = Photo.where(:owner_id => @list_of_private_users)
+    matching_photos = Photo.where(:owner_id => @list_of_public_users)
 
-    @list_of_private_photos = matching_photos.order({ :created_at => :desc })
+    @list_of_public_photos = matching_photos.order({ :created_at => :desc })
 
     render({ :template => "photos/index.html.erb" })
   end

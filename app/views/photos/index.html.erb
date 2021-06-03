@@ -9,7 +9,7 @@
 <hr>
 
 <div>
-
+    <% if @current_user != nil %>
     <form action="/insert_photo" method="post">
         <label for="image_box">
           Image
@@ -28,6 +28,7 @@
       </button>
     
       </form>
+    <% end %>
 </div>
 
 <hr>
@@ -60,7 +61,7 @@
         </th>
       </tr>
 
-      <% @list_of_private_photos.each do |a_photo| %>
+      <% @list_of_public_photos.each do |a_photo| %>
       <tr>
         <td>
           <img src = "<%= a_photo.image %>" >

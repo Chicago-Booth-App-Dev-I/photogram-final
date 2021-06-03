@@ -62,7 +62,10 @@
         Add a fan
       </dt>
       <dd>
-          <a href = "/users"> Like </a> #need to change this 
+          <form action ="/insert_like/<%=@the_photo.id%>">
+          <label for = "to_like"> </label>
+          <input id = "to_like" type = "hidden">
+          <button> Like </button>
       </dd>
 
     </dl>
