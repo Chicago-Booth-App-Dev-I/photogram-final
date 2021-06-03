@@ -73,6 +73,15 @@
           <% end %>
       </dd>
 
+      <dd>
+        <dt> Edit photo </dt>
+      </dd>
+          
+      <%if @current_user.id == @the_photo.owner.id %>
+        <dt> Delete photo <dt>
+        <dd> <a href ="/delete_photo/<%= @the_photo.id %>"> Delete this photo </a> </dd>
+      <% end %>
+
     </dl>
   </div>
 </div>
