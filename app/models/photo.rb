@@ -42,5 +42,6 @@ def list_of_likes
   
 end
 
+mount_uploader :image, ImageUploader
 
 end
