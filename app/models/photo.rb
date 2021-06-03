@@ -28,4 +28,19 @@ has_many(:followers, { :through => :owner, :source => :recipients })
 
 has_many(:fan_followers, { :through => :fans, :source => :recipients })
 
+def list_of_likes
+    the_photo_id = self.id
+    list_of_likes = Like.where(:photo_id => the_photo_id)
+    
+    likes_ids = Array.new
+
+    list_of_likes.each do |a_like|
+    likes_ids.push(a_like.fan_id)
+    end
+
+    return likes_ids
+  
+end
+
+
 end

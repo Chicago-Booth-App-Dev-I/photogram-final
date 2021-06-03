@@ -62,10 +62,15 @@
         Add a fan
       </dt>
       <dd>
-          <form action ="/insert_like/<%=@the_photo.id%>">
-          <label for = "to_like"> </label>
-          <input id = "to_like" type = "hidden">
-          <button> Like </button>
+          <% if @the_photo.list_of_likes.exclude?(@current_user.id) %>
+            <form action ="/insert_like/<%= @the_photo.id %>">
+            <label for = "to_like"> </label>
+            <input id = "to_like" type = "hidden">
+            <button> Like </button>
+           </form>
+          <% else %>
+            <a href = "/delete_like/<%= @the_photo.id %>"> Unlike </a>
+          <% end %>
       </dd>
 
     </dl>
