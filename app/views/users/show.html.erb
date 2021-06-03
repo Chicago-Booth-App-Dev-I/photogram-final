@@ -48,7 +48,7 @@
   <% end %>
     
   <dt> Following </dt>
-  <dd> <%= @the_user.following.count %> </dd>
+  <dd> <%= @the_user.following.count.to_s %> </dd>
 
   <% if @current_user.id == @the_user.id %>
   <dt> Edit user </dt>
