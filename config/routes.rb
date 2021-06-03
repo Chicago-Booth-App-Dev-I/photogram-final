@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   # Routes for the Comment resource:
 
   # CREATE
-  post("/insert_comment/:path_id", { :controller => "comments", :action => "create" })
+  get("/insert_comment/:path_id", { :controller => "comments", :action => "create" })
           
   # READ
   get("/comments", { :controller => "comments", :action => "index" })

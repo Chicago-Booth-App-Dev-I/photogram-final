@@ -114,6 +114,9 @@
 <h3> Add a new comment </h3>
 
 <form action = "/insert_comment/<%= @the_photo.id %>">
+  <label for = "comment_author">  </label>
+  <input id = "comment_author" type = "hidden" placeholder = "Enter a comment.." name = "query_author" value="@current_user.id">
+
   <label for = "new_comment"> Comment </label>
   <input id = "new_comment" type = "text" placeholder = "Enter a comment.." name = "query_body">
   <button> Add comment </button>
