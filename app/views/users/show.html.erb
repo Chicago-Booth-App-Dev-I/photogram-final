@@ -50,9 +50,23 @@
   <dt> Following </dt>
   <dd> <%= @the_user.following.count %> </dd>
 
+  <% if @current_user.id == @the_user.id %>
   <dt> Edit user </dt>
   <dd>
+      <form action ="/update_user">
+      
+      <label for ="update_username"> Username </label>
+      <input id="update_username" type = "text" value="<%=@current_user.username%>" name ="query_username">
+      
+      <label for ="update_private"> Private? </label>
+      <input id ="update_private" type="checkbox" name="query_private">
+
+      <button> Update user </button>
+       
+      </form>
   </dd>
+  
+  <% end %>
 
 </dl>
 

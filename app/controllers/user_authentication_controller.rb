@@ -74,7 +74,7 @@ class UserAuthenticationController < ApplicationController
 
       redirect_to("/", { :notice => "User account updated successfully."})
     else
-      render({ :template => "user_authentication/edit_profile_with_errors.html.erb" , :alert => @user.errors.full_messages.to_sentence })
+      render({ :template => "/" , :alert => @user.errors.full_messages.to_sentence })
     end
   end
 
@@ -85,4 +85,20 @@ class UserAuthenticationController < ApplicationController
     redirect_to("/", { :notice => "User account cancelled" })
   end
  
+def modify
+ @user = @current_user
+ @user.username = params.fetch("query_username")
+ @user.private = params.fetch("query_private", false)
+
+  if @user.valid?
+    @user.save
+
+    redirect_to("/users/#{@user.username}", { :notice => "User account updated successfully."})
+    
+  else
+    render({ :template => "/users/#{@user.username}" , :alert => @user.errors.full_messages.to_sentence })
+  end
+
+end
+
 end

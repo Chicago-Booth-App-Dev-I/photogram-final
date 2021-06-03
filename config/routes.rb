@@ -103,7 +103,8 @@ Rails.application.routes.draw do
   get("/edit_user_profile", { :controller => "user_authentication", :action => "edit_profile_form" })       
   # UPDATE RECORD
   post("/modify_user", { :controller => "user_authentication", :action => "update" })
-  
+  get("/update_user", { :controller => "user_authentication", :action => "modify" })
+
   # DELETE RECORD
   get("/cancel_user_account", { :controller => "user_authentication", :action => "destroy" })
 
